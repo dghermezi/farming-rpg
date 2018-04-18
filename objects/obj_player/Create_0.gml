@@ -15,3 +15,4 @@ spr_torso = spr_torso_male_shirt_white;
 spr_legs = spr_legs_male_pants_red;
 spr_hair = spr_hair_male_messy_blonde;
 spr_feet = spr_feet_male_shoes_black;
+spr_shadow = spr_character_shadow;
