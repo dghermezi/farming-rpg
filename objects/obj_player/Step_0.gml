@@ -24,6 +24,29 @@ if (moveX == 0) {
 	moveY = (input_down - input_up) * spd;
 }
 
+// GET DIRECTION PLAYER IS FACING
+if (moveX != 0) {
+	switch(sign(moveX)) {
+		case 1:
+			facing = dir.right;
+			break;
+		case -1:
+			facing = dir.left;
+			break;
+	}
+} else if (moveY != 0) {
+	switch(sign(moveY)) {
+		case 1:
+			facing = dir.down;
+			break;
+		case -1:
+			facing = dir.up;
+			break;
+	}
+}  else {
+	facing = -1;
+}
+
 // --------COLLISIONS
 // HORRIZONTAL
 if (moveX != 0) {
@@ -52,6 +75,20 @@ else if (moveY != 0) {
 			}
 		}
 		moveY = 0;
+	}
+}
+
+// Objects
+var inst = instance_place(x,y,obj_transition);
+if (inst != noone and facing == inst.playerFacingBefore) {
+	with(game) {
+		if (!doTransition) {
+			spawnRoom = inst.targetRoom;
+			spawnX = inst.targetX;
+			spawnY = inst.targetY;
+			spawnPlayerFacing = inst.playerFacingAfter;
+			doTransition = true;
+		}
 	}
 }
 
